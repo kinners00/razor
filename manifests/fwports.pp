@@ -3,6 +3,8 @@
 #
 class razor::fwports {
   # resources
+  require iptables
+  
   firewall { '100 allow Razor HTTP comms':
     dport  => 8150,
     proto  => tcp,
