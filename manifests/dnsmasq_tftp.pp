@@ -41,16 +41,4 @@ tftp-root=/var/lib/tftpboot"
     path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
     unless  => 'ls -Z /var/lib | grep tftpboot | grep tftpdir_t',
   }
-  
-  firewall { '100 allow Razor HTTP comms':
-    dport  => 8150,
-    proto  => tcp,
-    action => accept,
-  }->
-  firewall { '101 allow Razor HTTPS comms':
-    dport  => 8151,
-    proto  => tcp,
-    action => accept,
-  }
-
 }
