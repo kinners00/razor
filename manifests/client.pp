@@ -3,8 +3,13 @@
 #
 class razor::client {
   # resources
+  package { 'rubygems':
+    ensure => present,
+  }
+
   package { 'pe-razor-client':
     ensure   => 'present',
     provider => gem,
+    require  => Package['rubygems'],
   }
 }
