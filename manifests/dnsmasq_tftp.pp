@@ -33,12 +33,12 @@ tftp-root=/var/lib/tftpboot"
   -> exec { 'Define SELinux tftpdir_t file type for tftpboot folder':
     command => '/usr/sbin/semanage fcontext -a -t tftpdir_t "/var/lib/tftpboot(/.*)?"',
     path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-    unless  => 'ls -Z /var/lib | grep tftpboot | grep tftpdir_t',
+    unless  => 'ls -Z /var/lib | grep tftpboot | grep tftpdir_',
   }
   -> exec { 'Apply SELinux tftpdir_t file type to tftpboot folder hierarchy':
     before  => Service['dnsmasq'],
     command => '/sbin/restorecon -R -v /var/lib/tftpboot',
     path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-    unless  => 'ls -Z /var/lib | grep tftpboot | grep tftpdir_t',
+    unless  => 'ls -Z /var/lib | grep tftpboot | grep tftpdir_',
   }
 }
