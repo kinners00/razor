@@ -15,5 +15,8 @@ class razor::bootstrap {
   #  creates => '/var/lib/tftpboot/bootstrap.ipxe',
   #}
   
-  
+  file { '/var/lib/tftpboot/bootstrap.ipxe':
+    ensure => 'file',
+    source => "https://${facts['fqdn']}:8151/api/microkernel/bootstrap?nic_max=1&http_port=8150",
+  }
 }
