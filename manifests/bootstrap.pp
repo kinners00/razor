@@ -1,0 +1,1 @@
+wget   "https://$<RAZOR_HOSTNAME>:$<HTTPS_PORT>/api/microkernel/bootstrap?nic_max=1&http_port=$<HTTP_PORT>" -O /var/lib/tftpboot/bootstrap.ipxe
