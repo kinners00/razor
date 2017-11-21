@@ -1,1 +1,10 @@
-wget   "https://$<RAZOR_HOSTNAME>:$<HTTPS_PORT>/api/microkernel/bootstrap?nic_max=1&http_port=$<HTTP_PORT>" -O /var/lib/tftpboot/bootstrap.ipxe
+# Class: razor::bootstrap
+# Retrieves the Razor bootstrap.ipxe script
+#
+class razor::bootstrap {
+  # resources
+  file { '/var/lib/tftpboot/bootstrap.ipxe':
+    ensure => 'file',
+    source => "https://${facts['fqdn']}:8151/api/microkernel/bootstrap?nic_max=1&http_port=8150""
+  }
+}
