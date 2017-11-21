@@ -3,7 +3,7 @@
 #
 class razor::bootstrap {
   # resources
-  requires pe_razor
+  require pe_razor
   
   file { '/var/lib/tftpboot/bootstrap.ipxe':
     ensure => 'file',
