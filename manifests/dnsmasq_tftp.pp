@@ -15,7 +15,7 @@ tftp-root=/var/lib/tftpboot"
     ensure => 'directory',
     mode   => '0655',
   }
-  -> file { '/var/liv/tftpboot/undionly-20140116.kpxe':
+  -> file { '/var/lib/tftpboot/undionly-20140116.kpxe':
     ensure => 'file',
     source => 'https://s3.amazonaws.com/pe-razor-resources/undionly-20140116.kpxe',
   }
