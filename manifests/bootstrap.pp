@@ -16,7 +16,7 @@ class razor::bootstrap {
   }
   
   exec { 'Download bootstrap.ipxe from Razor server':
-    command => "/usr/bin/wget -k https://${facts['fqdn']}:8151/api/microkernel/bootstrap?nic_max=1&http_port=8150 -O /var/lib/tftpboot/bootstrap.ipxe",
+    command => "/usr/bin/wget --no-check-certificate 'https://${facts['fqdn']}:8151/api/microkernel/bootstrap?nic_max=1&http_port=8150' -O /var/lib/tftpboot/bootstrap.ipxe",
     creates => '/var/lib/tftpboot/bootstrap.ipxe',
   }
 }
