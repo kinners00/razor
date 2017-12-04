@@ -3,6 +3,23 @@
 #
 class razor::dnsmasq_tftp {
   # resources
+  $dnsmasq_dhcp_content = "listen-address=172.16.66.5
+listen-address=127.0.0.1
+no-dhcp-interface=lo
+
+server=192.168.217.1
+local=/razor/
+
+no-hosts
+no-resolv
+
+domain=razor
+dhcp-fqdn
+
+dhcp-range=172.16.66.100,172.16.66.200,12h
+dhcp-authoritative
+dhcp-option=option:router,172.16.66.2"
+
   $razor_content = "# iPXE sets option 175, mark it for network IPXEBOOT
 dhcp-match=IPXEBOOT,175
 dhcp-boot=net:IPXEBOOT,bootstrap.ipxe
@@ -27,6 +44,10 @@ tftp-root=/var/lib/tftpboot"
   -> file { '/etc/dnsmasq.d/razor':
     ensure  => 'file',
     content => $razor_content,
+  }
+  -> file { '/etc/dnsmasq.d/dhcp':
+    ensure  => 'file',
+    content => $dnsmasq_dhcp_content,
   }
   ~> service { 'dnsmasq':
     ensure => 'running',
