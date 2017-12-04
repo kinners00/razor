@@ -14,7 +14,8 @@ domain=razor
 dhcp-fqdn
 dhcp-range=172.16.66.100,172.16.66.200,12h
 dhcp-authoritative
-dhcp-option=option:router,172.16.66.2"
+dhcp-option=option:router,172.16.66.2
+dhcp-option=option:dns-server,172.16.66.1"
 
   $razor_content = "# iPXE sets option 175, mark it for network IPXEBOOT
 dhcp-match=IPXEBOOT,175
