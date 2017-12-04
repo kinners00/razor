@@ -29,6 +29,26 @@ class razor::fwports {
     dport  => 69,
     proto  => udp,
     action => accept,
+  }->
+  firewall { '105 allow Samba - NetBIOS Name Service':
+    dport  => 137,
+    proto  => udp,
+    action => accept,
+  }->
+  firewall { '106 allow Samba - NetBIOS Datagram Service':
+    dport  => 138,
+    proto  => udp,
+    action => accept,
+  }->
+  firewall { '107 allow Samba - NetBIOS Session Service':
+    dport  => 139,
+    proto  => tcp,
+    action => accept,
+  }->
+  firewall { '108 allow Samba - Microsoft Directory Service':
+    dport  => 445,
+    proto  => tcp,
+    action => accept,
   }
   
 }
