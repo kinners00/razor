@@ -7,10 +7,10 @@ class razor::dnsmasq_tftp {
 listen-address=127.0.0.1
 no-dhcp-interface=lo
 server=172.16.66.1
-local=/razor/
+local=/puppet.vm/
 no-hosts
 no-resolv
-domain=razor
+domain=puppet.vm
 dhcp-fqdn
 dhcp-range=172.16.66.100,172.16.66.200,12h
 dhcp-authoritative
