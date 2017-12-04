@@ -6,7 +6,7 @@ class razor::dnsmasq_tftp {
   $dnsmasq_dhcp_content = "listen-address=172.16.66.5
 listen-address=127.0.0.1
 no-dhcp-interface=lo
-server=192.168.217.1
+server=172.16.66.1
 local=/razor/
 no-hosts
 no-resolv
