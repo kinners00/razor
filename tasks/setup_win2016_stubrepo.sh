@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Checking for existence of Windows 2016 ISO..."
-if [-e /root/SW_DVD9_Win_Svr_STD_Core_and_DataCtr_Core_2016_64Bit_English_-2_MLF_X21-22843.ISO ]
+if [ -e /root/SW_DVD9_Win_Svr_STD_Core_and_DataCtr_Core_2016_64Bit_English_-2_MLF_X21-22843.ISO ]
  then
   echo "Windows 2016 ISO found, continuing..."
   echo "Creating win2016 repository..."
