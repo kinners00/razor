@@ -14,5 +14,21 @@ class razor::fwports {
     dport  => 8151,
     proto  => tcp,
     action => accept,
+  }->
+  firewall { '102 allow DHCP comms':
+    dport  => 67,
+    proto  => udp,
+    action => accept,
+  }->
+  firewall { '103 allow DHCP comms':
+    dport  => 68,
+    proto  => udp,
+    action => accept,
+  }->
+  firewall { '104 allow TFTP comms':
+    dport  => 69,
+    proto  => udp,
+    action => accept,
   }
+  
 }
