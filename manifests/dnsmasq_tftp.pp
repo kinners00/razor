@@ -19,7 +19,9 @@ dhcp-option=option:dns-server,172.16.66.1"
 
   $razor_content = "# iPXE sets option 175, mark it for network IPXEBOOT
 dhcp-match=IPXEBOOT,175
+dhcp-match=X86-64_EFI, option:client-arch, 7
 dhcp-boot=net:IPXEBOOT,bootstrap.ipxe
+dhcp-boot=net:X86-64_EFI,ipxe.efi
 dhcp-boot=undionly-20140116.kpxe
 # TFTP setup
 enable-tftp
@@ -34,6 +36,11 @@ tftp-root=/var/lib/tftpboot"
     ensure  => 'file',
     seltype => 'tftpdir_rw_t',
     source  => 'https://s3.amazonaws.com/pe-razor-resources/undionly-20140116.kpxe',
+  }
+  -> file { '/var/lib/tftpboot/ipxe.efi':
+    ensure  => 'file',
+    seltype => 'tftpdir_rw_t',
+    source  => 'http://boot.ipxe.org/ipxe.efi',
   }
   -> package { 'dnsmasq':
     ensure => 'present',
