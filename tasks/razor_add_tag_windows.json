@@ -1,0 +1,18 @@
+{
+  "description": "Adds a tag to razor for a single MAC address and links it to a Razor policy",
+  "input_method": "stdin",
+  "parameters": {
+    "name": {
+      "description": "The short hostname for this MAC address",
+      "type": "String[1]"
+    },
+    "mac": {
+      "description": "The MAC address in the format xx:xx:xx:xx:xx:xx",
+      "type": "String[1]"
+    },
+    "policy": {
+      "description": "The Razor policy to link this tag to",
+      "type": "Enum[win2016]"
+    }
+  }
+}
