@@ -2,8 +2,8 @@
   "description": "Adds a tag to razor for a single MAC address and links it to a Razor policy",
   "input_method": "environment",
   "parameters": {
-    "name": {
-      "description": "The short hostname for this MAC address",
+    "fqdn": {
+      "description": "The full hostname (FQDN) for this MAC address",
       "type": "String[1]"
     },
     "mac": {
