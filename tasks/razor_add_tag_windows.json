@@ -1,6 +1,6 @@
 {
   "description": "Adds a tag to razor for a single MAC address and links it to a Razor policy",
-  "input_method": "stdin",
+  "input_method": "environment",
   "parameters": {
     "name": {
       "description": "The short hostname for this MAC address",
