@@ -17,13 +17,13 @@ dhcp-authoritative
 dhcp-option=option:router,172.16.66.2
 dhcp-option=option:dns-server,172.16.66.1"
 
-  $razor_content = "# iPXE sets option 175, mark it for network IPXEBOOT
-dhcp-match=set:iPXE,175
-dhcp-match=set:iPXEEFI,77
+  $razor_content = "# Boot logic
 dhcp-match=set:EFI,option:client-arch,7
-dhcp-boot=net:iPXE,bootstrap.ipxe
-dhcp-boot=net:iPXEEFI,bootstrap.ipxe
-dhcp-boot=net:EFI,ipxe.efi
+dhcp-boot=tag:EFI,ipxe.efi
+
+dhcp-match=set:iPXE,175
+dhcp-boot=tag:iPXE,bootstrap.ipxe
+
 dhcp-boot=undionly-20140116.kpxe
 # TFTP setup
 enable-tftp
