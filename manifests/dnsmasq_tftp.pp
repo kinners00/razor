@@ -18,10 +18,12 @@ dhcp-option=option:router,172.16.66.2
 dhcp-option=option:dns-server,172.16.66.1"
 
   $razor_content = "# iPXE sets option 175, mark it for network IPXEBOOT
-dhcp-match=IPXEBOOT,175
-dhcp-match=X86-64_EFI, option:client-arch, 7
-dhcp-boot=net:IPXEBOOT,bootstrap.ipxe
-dhcp-boot=net:X86-64_EFI,ipxe.efi
+dhcp-match=set:iPXE,175
+dhcp-match=set:EFI,option:client-arch,7
+tag-if=set:Bootstrap,tag:iPXE
+tag-if=set:iPXEEFI,tag:!iPXE,tag:EFI
+dhcp-boot=net:Bootstrap,bootstrap.ipxe
+dhcp-boot=net:iPXEEFI,ipxe.efi
 dhcp-boot=undionly-20140116.kpxe
 # TFTP setup
 enable-tftp
