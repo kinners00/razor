@@ -1,3 +1,3 @@
 #!/bin/bash
-razor create-tag --name "$PT_name" --rule '["=", ["fact", "macaddress"], '"$PT_mac"']'
-razor add-policy-tag --name "$PT_policy" --tag "$PT_name"
+razor create-tag --name $PT_name --rule '["=", ["fact", "macaddress"], "'$PT_mac'"]'
+razor add-policy-tag --name $PT_policy --tag $PT_name
