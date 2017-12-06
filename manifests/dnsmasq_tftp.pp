@@ -57,8 +57,9 @@ tftp-root=/var/lib/tftpboot"
     content => $dnsmasq_dhcp_content,
     notify  => Service['dnsmasq'],
   }
-  ~> service { 'dnsmasq':
+  -> service { 'dnsmasq':
     ensure => 'running',
+    enable => true,
   }
 
   package { 'policycoreutils-python':
