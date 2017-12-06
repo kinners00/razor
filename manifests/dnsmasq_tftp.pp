@@ -19,11 +19,13 @@ dhcp-option=option:dns-server,172.16.66.1"
 
   $razor_content = "# iPXE sets option 175, mark it for network IPXEBOOT
 dhcp-match=set:iPXE,175
+dhcp-match=set:iPXEEFI,77
 dhcp-match=set:EFI,option:client-arch,7
-tag-if=set:Bootstrap,tag:iPXE
-tag-if=set:iPXEEFI,tag:!iPXE,tag:EFI
-dhcp-boot=net:Bootstrap,bootstrap.ipxe
-dhcp-boot=net:iPXEEFI,ipxe.efi
+#tag-if=set:Bootstrap,tag:iPXE
+#tag-if=set:iPXEEFI,tag:!iPXE,tag:EFI
+dhcp-boot=net:iPXE,bootstrap.ipxe
+dhcp-boot=net:iPXEEFI,bootstrap.ipxe
+dhcp-boot=net:EFI,ipxe.efi
 dhcp-boot=undionly-20140116.kpxe
 # TFTP setup
 enable-tftp
@@ -50,10 +52,12 @@ tftp-root=/var/lib/tftpboot"
   -> file { '/etc/dnsmasq.d/razor':
     ensure  => 'file',
     content => $razor_content,
+    notify  => Service['dnsmasq'],
   }
   -> file { '/etc/dnsmasq.d/dhcp':
     ensure  => 'file',
     content => $dnsmasq_dhcp_content,
+    notify  => Service['dnsmasq'],
   }
   ~> service { 'dnsmasq':
     ensure => 'running',
