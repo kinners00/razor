@@ -19,8 +19,9 @@ razor update-node-metadata --node $razornode --key hostname --value $PT_fqdn
 
 # Update the tag rule or create the tag if it doesn't exist
 tagname=${PT_policy}_tag
+tagfound=`razor tags | grep $tagname`
 echo "Searching for tag with name $tagname..."
-if [ -z `razor tags | grep $tagname` ]
+if [ -z $tagfound ]
 then
   # Tag doesn't exist, so create it and add it to the policy
   echo "Tag not found, creating tag..."
