@@ -29,13 +29,14 @@ then
   razor add-policy-tag --name $PT_policy --tag $tagname
 else
   # Tag already exists, check if it uses the correct rule
+  echo "Tag found, checking the tag rule type..."
   if [ -z `razor tags $tagname | grep "rule: \[\"has_macaddress\", " ]
   then
     echo "The razor tag rule $tagname is not configured to exclusively use has_macaddress! Canceling modification of the rule..."
     exit 1
   else
     # Tag rule is correct, update the rule
-    echo "Tag found, updating rule to include MAC address $PT_mac..."
+    echo "Tag rule type is correct, updating rule to include MAC address $PT_mac..."
     new_rule_macs=`razor tags $tagname | grep "rule: \[\"has_macaddress\", " | awk -F, ' { $NF = substr($NF, 1, length($NF)-1); for (i=2; i<NF; i++) printf $i ", "; print $NF, ",\"'$PT_mac'\"]" }'`
     razor update-tag-rule --name $tagname --force --rule '["has_macaddress", "'$new_rule_macs'"]'
   fi
