@@ -38,6 +38,7 @@ else
     # Tag rule is correct, update the rule
     echo "Tag rule type is correct, updating rule to include MAC address $PT_mac..."
     new_rule_macs=`razor tags $tagname | grep "rule: \[\"has_macaddress\", " | awk -F, ' { $NF = substr($NF, 1, length($NF)-1); for (i=2; i<NF; i++) printf $i ", "; print $NF",", "\"'$PT_mac'\"" }'`
-    razor update-tag-rule --name $tagname --force --rule '["has_macaddress", '$new_rule_macs']'
+    new_rule='["has_macaddress", '$new_rule_macs']'
+    razor update-tag-rule --name $tagname --force --rule "$new_rule"
   fi
 fi
