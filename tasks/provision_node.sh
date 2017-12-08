@@ -7,8 +7,9 @@ then
   # Node not assumed to be in Razor, register the node and set $razornode to new node item
   razornode=`razor register-node --hw-info net0=$PT_mac --installed false | grep name | awk -F':' '{ gsub(/ /, "", $0); print $2 }'`
 else
-  # Node already discovered by Razor, set $razornode to existing node item
+  # Node already discovered by Razor, set $razornode to existing node item and clear installed flag
   razornode=$found_node
+  razor reinstall-node --node $razornode
 fi
 razor update-node-metadata --node $razornode --key hostname --value $PT_fqdn
 
