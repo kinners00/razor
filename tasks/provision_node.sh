@@ -18,7 +18,7 @@ echo "Setting hostname to $PT_fqdn..."
 razor update-node-metadata --node $razornode --key hostname --value $PT_fqdn
 
 # Update the tag rule or create the tag if it doesn't exist
-tagname = $PT_policy"_tag"
+tagname=${PT_policy}_tag
 echo "Searching for tag with name $tagname..."
 if [ -z `razor tags | grep $tagname`]
 then
