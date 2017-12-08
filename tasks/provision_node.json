@@ -1,5 +1,5 @@
 {
-  "description": "Adds a tag to razor for a single MAC address and links it to a Razor policy",
+  "description": "Configures razor to provision a node by matching its MAC address to a Razor policy",
   "input_method": "environment",
   "parameters": {
     "fqdn": {
