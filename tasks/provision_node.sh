@@ -11,7 +11,7 @@ then
 else
   # Node already discovered by Razor, set $razornode to existing node item and clear installed flag
   echo "Node found, clearing install flag..."
-  razornode=$found_node
+  razornode="$found_node"
   razor reinstall-node --node $razornode
 fi
 echo "Setting hostname to $PT_fqdn..."
