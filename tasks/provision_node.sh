@@ -36,7 +36,7 @@ else
     exit 1
   else
     # Tag rule is correct, check if the rule needs updating
-    if [ -z `razor tags $tagname | grep "rule: \[\"has_macaddress\", " | grep $PT_mac ]
+    if [ -z `razor tags $tagname | grep "rule: \[\"has_macaddress\", " | grep $PT_mac` ]
     then
       echo "Tag rule type is correct, updating rule to include MAC address $PT_mac..."
       new_rule_macs=`razor tags $tagname | grep "rule: \[\"has_macaddress\", " | awk -F, ' { $NF = substr($NF, 1, length($NF)-1); for (i=2; i<NF; i++) printf $i ", "; print $NF",", "\"'$PT_mac'\"" }'`
